@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Yasin Karateke</title>
+    <style>
+        /* Variables CSS pour les couleurs */
+        :root {
+            --beige-clair: #f5f2e9;
+            --beige: #e8e0cc;
+            --bleu-clair: #a5c4d4;
+            --bleu-fonce: #5b8a9e;
+            --texte: #333333;
+        }
+
+        /* Styles globaux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--beige-clair);
+            color: var(--texte);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header et Navigation */
+        header {
+            background-color: var(--bleu-fonce);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--beige);
+        }
+
+        .active {
+            border-bottom: 2px solid var(--beige);
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Sections générales */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 36px;
+            color: var(--bleu-fonce);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 20px;
+            color: var(--texte);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Page d'accueil */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: calc(100vh - 80px);
+            padding: 20px 0;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--bleu-fonce);
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: var(--texte);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--bleu-fonce);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--bleu-clair);
+            transform: translateY(-2px);
+        }
+
+        /* À propos */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--bleu-fonce);
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+        }
+
+        .download-cv {
+            display: inline-block;
+            background-color: var(--bleu-fonce);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .download-cv:hover {
+            background-color: var(--bleu-clair);
+            transform: translateY(-2px);
+        }
+
+        /* Compétences */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--bleu-fonce);
+        }
+
+        .skill-progress {
+            height: 8px;
+            background-color: var(--beige);
+            border-radius: 4px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 4px;
+            background-color: var(--bleu-fonce);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-list li:before {
+            content: "•";
+            color: var(--bleu-fonce);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Projets */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background-color: var(--bleu-clair);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--bleu-fonce);
+        }
+
+        .project-content p {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background-color: var(--beige);
+            color: var(--texte);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: var(--bleu-fonce);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: var(--bleu-clair);
+        }
+
+        /* Contact */
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 2;
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--bleu-fonce);
+        }
+
+        .contact-details {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .contact-details li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            color: var(--bleu-fonce);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--bleu-fonce);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            background-color: var(--bleu-fonce);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--bleu-clair);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bleu-fonce);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--beige);
+        }
+
+        .social-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .social-links li {
+            margin-right: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--beige);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0;
+                height: 92vh;
+                top: 8vh;
+                background-color: var(--bleu-fonce);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 50%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                padding-top: 50px;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .nav-active {
+                transform: translateX(0%);
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+
+            .about-container {
+                flex-direction: column;
+            }
+
+            .about-image {
+                margin-bottom: 30px;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">YK</a>
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Accueil</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#skills">Compétences</a></li>
+                    <li><a href="#projects">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page d'accueil -->
+    <section id="home">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Yasin Karateke</h1>
+                    <p>Développeur web passionné, étudiant à Metz Numérique School. Bienvenue sur mon portfolio où je partage ma passion pour le développement web et l'informatique.</p>
+                    <a href="#projects" class="cta-button">Voir mes projets</a>
+                </div>
+                <div class="hero-image">
+                    <img src="/api/placeholder/400/320" alt="Yasin Karateke">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="about" style="background-color: white;">
+        <div class="container">
+            <h2 class="section-title">À propos de moi</h2>
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="/api/placeholder/400/320" alt="Yasin Karateke">
+                </div>
+                <div class="about-content">
+                    <h3>Développeur Web</h3>
+                    <p>Je m'appelle Yasin Karateke, j'ai 21 ans et je suis né le 14 janvier 2004. Actuellement étudiant à Metz Numérique School, je me spécialise dans le développement web.</p>
+                    <p>Passionné par l'informatique depuis mon plus jeune âge, j'ai développé un intérêt particulier pour la création de sites web et d'applications. Mon parcours académique me permet d'acquérir des compétences solides en HTML, CSS, JavaScript et d'autres technologies web modernes.</p>
+                    <p>Je suis constamment à la recherche de nouveaux défis et opportunités pour approfondir mes connaissances et développer des projets innovants.</p>
+                    <a href="KARATEKE Yasin-5.pdf" class="download-cv">Cliquez pour télécharger mon CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Mes compétences</h2>
+            <p class="section-subtitle">Voici les technologies et compétences que j'ai acquises tout au long de mon parcours.</p>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>Développement Frontend</h3>
+                    <div class="skill-progress">
+                        <div class="progress-bar" style="width: 90%;"></div>
+                    </div>
+                    <ul class="skill-list">
+                        <li>HTML5 / CSS3</li>
+                        <li>JavaScript</li>
+                        <li>React.js</li>
+                        <li>Responsive Design</li>
+                        <li>Bootstrap</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Développement Backend</h3>
+                    <div class="skill-progress">
+                        <div class="progress-bar" style="width: 75%;"></div>
+                    </div>
+                    <ul class="skill-list">
+                        <li>PHP</li>
+                        <li>Node.js</li>
+                        <li>Express.js</li>
+                        <li>MySQL</li>
+                        <li>API RESTful</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Outils & Environnements</h3>
+                    <div class="skill-progress">
+                        <div class="progress-bar" style="width: 85%;"></div>
+                    </div>
+                    <ul class="skill-list">
+                        <li>Git / GitHub</li>
+                        <li>VS Code</li>
+                        <li>Figma</li>
+                        <li>Adobe XD</li>
+                        <li>Terminal</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Soft Skills</h3>
+                    <div class="skill-progress">
+                        <div class="progress-bar" style="width: 95%;"></div>
+                    </div>
+                    <ul class="skill-list">
+                        <li>Travail en équipe</li>
+                        <li>Résolution de problèmes</li>
+                        <li>Communication</li>
+                        <li>Organisation</li>
+                        <li>Adaptabilité</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projects" style="background-color: white;">
+        <div class="container">
+            <h2 class="section-title">Mes projets</h2>
+            <p class="section-subtitle">Découvrez une sélection de mes réalisations récentes.</p>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-img">Projet 1</div>
+                    <div class="project-content">
+                        <h3>Site E-commerce</h3>
+                        <p>Conception et développement d'un site e-commerce responsive avec système de panier et paiement intégré.</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">PHP</span>
+                        </div>
+                        <a href="#" class="project-link">Voir le projet →</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">Projet 2</div>
+                    <div class="project-content">
+                        <h3>Application de Gestion</h3>
+                        <p>Application web permettant la gestion des stocks et des commandes pour une entreprise locale.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MySQL</span>
+                        </div>
+                        <a href="#" class="project-link">Voir le projet →</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">Projet 3</div>
+                    <div class="project-content">
+                        <h3>Blog Personnel</h3>
+                        <p>Création d'un blog avec système de gestion de contenu, commentaires et authentification.</p>
+                        <div class="project-tags">
+                            <span class="tag">WordPress</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">CSS</span>
+                        </div>
+                        <a href="#" class="project-link">Voir le projet →</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">Projet 4</div>
+                    <div class="project-content">
+                        <h3>Application Météo</h3>
+                        <p>Application web permettant de consulter la météo en temps réel grâce à l'API OpenWeatherMap.</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">API</span>
+                        </div>
+                        <a href="#" class="project-link">Voir le projet →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-subtitle">N'hésitez pas à me contacter pour discuter de vos projets ou opportunités de collaboration.</p>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Mes coordonnées</h3>
+                    <ul class="contact-details">
+                        <li>
+                            <span class="contact-icon">📍</span>
+                            <span>Metz, France</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📧</span>
+                            <span>yasin.karateke@gmail.com</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📱</span>
+                            <span>+33 6 12 34 56 78</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Votre email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Sujet">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Votre message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Yasin Karateke</h3>
+                    <p>Développeur web passionné, étudiant à Metz Numérique School.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Accueil</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#skills">Compétences</a></li>
+                        <li><a href="#projects">Projets</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Réseaux sociaux</h3>
+                    <ul class="social-links">
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Yasin Karateke. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active nav link
+                        document.querySelectorAll('.nav-links a').forEach(navLink => {
+                            navLink.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // Mobile navigation
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
+            
+            burger.addEventListener('click', () => {
+                // Toggle Nav
+                nav.classList.toggle('nav-active');
+                
+                // Animate Links
+                navLinks.forEach((link, index) => {
+                    if (link.style.animation) {
+                        link.style.animation = '';
+                    } else {
+                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                    }
+                });
+                
+                // Burger Animation
+                burger.classList.toggle('toggle');
+            });
+
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert("Merci pour votre message ! Je vous répondrai dès que possible.");
+                    contactForm.reset();
+                });
+            }
+
+            // Highlight active section on scroll
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-links a');
+                
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
